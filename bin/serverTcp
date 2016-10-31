@@ -1,0 +1,30 @@
+#!/usr/sbin/env python3.5
+import socketserver
+
+
+
+class HandlerClass(socketserver.BaseRequestHandler):
+    i = 0
+    def handle(self):
+        while True:
+            try:
+                msg = self.request.recv(1024)
+                if len(msg) == 0:
+                    break
+                bufferMsg= msg.decode('ascii')
+                print(bufferMsg)
+                self.i = self.i + 1/4
+                print('Printed {} labels'.format(str(self.i)))
+            except Exception as e:
+                print(e)
+
+
+if __name__ == '__main__':
+    import sys
+    args = []
+    args = sys.argv
+    address = ('127.0.0.1', int(args[1]))
+    server = socketserver.TCPServer(address, HandlerClass)
+    server.allow_reuse_address = True
+    server.serve_forever()
+    

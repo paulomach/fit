@@ -1,0 +1,15 @@
+#!/bin/bash
+
+while true;
+do
+	read -n 1
+	sleep 0.3
+	if [[ $1 = "b" ]]; then
+		echo -n -e "\x0200$(shuf -i378-389 -n1)\x03"
+	else	
+		echo -n -e "\x020$(shuf -i3780-3890 -n1)\x03"
+	fi
+	#echo -n -e "\x02IIIII\x03"
+	#echo -n -e "\x02SSSSS\x03"
+	#echo -n -e "\x02NNNNN\x03"
+done
