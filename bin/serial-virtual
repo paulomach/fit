@@ -2,14 +2,9 @@
 
 while true;
 do
-	read -n 1
-	sleep 0.3
-	if [[ $1 = "b" ]]; then
-		echo -n -e "\x0200$(shuf -i378-389 -n1)\x03"
+	if [[ $1 = "box" ]]; then
+		socat -d -d pty,raw,echo exec:"serialReply b"
 	else	
-		echo -n -e "\x020$(shuf -i3780-3890 -n1)\x03"
+		socat -d -d pty,raw,echo exec:serialReply
 	fi
-	#echo -n -e "\x02IIIII\x03"
-	#echo -n -e "\x02SSSSS\x03"
-	#echo -n -e "\x02NNNNN\x03"
 done
