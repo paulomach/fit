@@ -1,10 +1,7 @@
 #!/bin/bash
 
-while true;
-do
-	if [[ $1 = "box" ]]; then
-		socat -d -d pty,raw,echo exec:"serialReply b"
-	else	
-		socat -d -d pty,raw,echo exec:serialReply
-	fi
-done
+if [[ $1 = "box" ]]; then
+	socat -d -d pty,raw,echo exec:"serialReply b"
+else	
+	socat -d -d pty,raw,echo exec:serialReply
+fi
